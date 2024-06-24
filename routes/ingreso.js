@@ -8,12 +8,12 @@ import { validarJWT } from '../middlewares/validar-jwt.js';
 const router = Router();
 
 router.get('/',[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], IngresoController.listarIngresos);
 
 router.get('/:id',[
-    validarJWT,
+    // validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(ingresoHelper.validarId),
     validarCampos
@@ -21,14 +21,14 @@ router.get('/:id',[
 ], IngresoController.listarIngreso);
 
 router.post('/', [
-    validarJWT,
+    // validarJWT,
     check('fecha', 'La fecha es obligatoria').not().isEmpty(),
     check('sede', 'La sede es obligatoria').not().isEmpty(),
     validarCampos
 ], IngresoController.crearIngreso);
 
 router.put('/:id', [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(ingresoHelper.validarId),
     check('fecha', 'La fecha es obligatoria').not().isEmpty(),

@@ -8,19 +8,19 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], SedeController.listarSedes);
 
 router.get("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(sedeHelper.validarId),
     validarCampos
 ], SedeController.listarSede);
 
 router.post("/", [
-    validarJWT,
+    // validarJWT,
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("direccion", "La dirección es obligatoria").not().isEmpty(),
     check("codigo", "El código es obligatorio").not().isEmpty(),
@@ -31,7 +31,7 @@ router.post("/", [
 ], SedeController.crearSede);
 
 router.put("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(sedeHelper.validarId),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),

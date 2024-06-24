@@ -8,57 +8,57 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], pagoController.listarPagos);
 
 router.get("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarId),
     validarCampos
 ], pagoController.listarPago);
 
 router.get("/listar/activos",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], pagoController.listarActivos);
 
 router.get("/listar/inactivos",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], pagoController.listarInactivos);
 
 router.get("/total-pagos-plan/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarIdPlan),
     validarCampos
 ], pagoController.totalPagosPlan);
 
 router.get("/total-pagos-cliente/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarIdCliente),
     validarCampos
 ], pagoController.totalPagosCliente);
 
 router.put("/activar/:id", [
-    // validarJWT,
+    // // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarId),
     validarCampos
 ], pagoController.activarPago);
 
 router.put("/inactivar/:id", [
-    // validarJWT,
+    // // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarId),
     validarCampos
 ], pagoController.inactivarPago);
 
 router.post("/", [
-    validarJWT,
+    // validarJWT,
     check("cliente_id", "El cliente es obligatorio").not().isEmpty(),
     check("cliente_id", "El cliente debe ser un ID válido").isMongoId(),
     check("plan", "El plan es obligatorio").not().isEmpty(),
@@ -73,7 +73,7 @@ router.post("/", [
 ], pagoController.crearPago);
 
 router.put("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(pagoHelper.validarId),
     check("cliente_id", "El cliente es obligatorio").not().isEmpty(),
@@ -91,7 +91,7 @@ router.put("/:id", [
 
 // total de pagos entre fechas
 router.get("/total-pagos-entre-fechas",[
-    validarJWT,
+    // validarJWT,
 ], pagoController.totalPagosEntreFechas);
 
 export default router;

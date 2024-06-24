@@ -8,7 +8,7 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.post("/",[
-    validarJWT,
+    // validarJWT,
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("fechaNacimiento", "La fecha de nacimiento es obligatoria").not().isEmpty(),
     check("edad", "La edad es obligatoria").not().isEmpty(),
@@ -24,7 +24,7 @@ router.post("/",[
 ], ClienteController.crearCliente);
 
 router.put("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarId),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
@@ -42,58 +42,58 @@ router.put("/:id", [
 ], ClienteController.modificarCliente);
 
 router.put("/activar/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarId),
     validarCampos
 ], ClienteController.activarCliente);
 
 router.put("/inactivar/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarId),
     validarCampos
 ], ClienteController.inactivarCliente);
 
 router.get("/", [
-    validarJWT,
+    // validarJWT,
     validarCampos
 ],ClienteController.listarClientes);
 
 router.get("/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarId),
     validarCampos
 ], ClienteController.listarCliente);
 
 router.get("/listar/activos",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], ClienteController.listarClientesActivos);
 router.get("/listar/inactivos",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], ClienteController.listarClientesInactivos);
 router.get("/listar-por-plan/:id", [
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarPlan),
     validarCampos
 ], ClienteController.listarPorPlan);
 
 router.get("/total/clientes",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], ClienteController.totalClientes);
 
 router.get("/listar/cumpleaños",[
-    validarJWT,
+    // validarJWT,
     validarCampos
 ], ClienteController.listarCumpleaños);
 
 router.get("/listar/seguimiento/:id",[
-    validarJWT,
+    // validarJWT,
     check("id", "Se necesita un mongoid valido").isMongoId(),
     check("id").custom(clienteHelper.validarId),
     validarCampos
