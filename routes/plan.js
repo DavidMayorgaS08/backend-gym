@@ -8,29 +8,29 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], PlanController.listarPlanes);
 
 router.get("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(planHelper.validarId),
     validarCampos
 ], PlanController.listarPlan);
 
 router.get("/listar/activas",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], PlanController.listarPlanesActivos);
 
 router.get("/listar/inactivas",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], PlanController.listarPlanesInactivos);
 
 router.post("/", [
-    // validarJWT,
+    validarJWT,
     check("codigo", "El código es obligatorio").not().isEmpty(),
     check("descripcion", "La descripción es obligatoria").not().isEmpty(),
     check("valor", "El precio es obligatorio").not().isEmpty(),
@@ -43,7 +43,7 @@ router.post("/", [
 ], PlanController.crearPlan);
 
 router.put("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(planHelper.validarId),
     check("codigo", "El código es obligatorio").not().isEmpty(),
@@ -58,14 +58,14 @@ router.put("/:id", [
 ], PlanController.modificarPlan);
 
 router.put("/activar/:id", [
-    // // validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(planHelper.validarId),
     validarCampos
 ], PlanController.activarPlan);
 
 router.put("/inactivar/:id", [
-    // // validarJWT,
+    // validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(planHelper.validarId),
     validarCampos

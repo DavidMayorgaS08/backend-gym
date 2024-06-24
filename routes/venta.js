@@ -8,19 +8,19 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    // // validarJWT,
+    validarJWT,
     validarCampos
 ], VentaController.listarVentas);
 
 router.get("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(ventaHelper.validarId),
     validarCampos
 ], VentaController.listarVenta);
 
 router.post("/", [
-    // // validarJWT,
+    validarJWT,
     check("fecha", "La fecha es obligatoria").not().isEmpty(),
     check("codigo_producto", "El código del producto es obligatorio").not().isEmpty(),
     check("valor", "El valor unitario es obligatorio").not().isEmpty(),
@@ -31,7 +31,7 @@ router.post("/", [
 ], VentaController.crearVenta);
 
 router.put("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(ventaHelper.validarId),
     check("fecha", "La fecha es obligatoria").not().isEmpty(),

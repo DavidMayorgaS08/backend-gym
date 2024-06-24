@@ -8,19 +8,19 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], mantenimientoController.listarMantenimientos);
 
 router.get("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(mantenimientoHelper.validarId),
     validarCampos
 ], mantenimientoController.listarMantenimiento);
 
 router.post("/", [
-    // validarJWT,
+    validarJWT,
     check("maquina_id", "El id de la máquina es obligatorio").not().isEmpty(),
     check("maquina_id", "El id de la máquina debe ser un ID válido").isMongoId(),
     check("fecha_mantenimiento", "La fecha de mantenimiento es obligatoria").not().isEmpty(),
@@ -32,7 +32,7 @@ router.post("/", [
 ], mantenimientoController.crearMantenimiento);
 
 router.put("/:id", [
-    // validarJWT,
+    validarJWT,
     check("id", "No es un ID válido").isMongoId(),
     check("id").custom(mantenimientoHelper.validarId),
     check("maquina_id", "El id de la máquina es obligatorio").not().isEmpty(),

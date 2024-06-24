@@ -8,35 +8,35 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 router.get("/",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], UsuarioController.listarUsuarios);
 
 router.get("/:id",[
-    // validarJWT,
+    validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(usuarioHelper.validarId),
     validarCampos
 ], UsuarioController.listarUsuario);
 
 router.get("/listar/activos",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], UsuarioController.listarUsuariosActivos);
 
 router.get("/listar/inactivos",[
-    // validarJWT,
+    validarJWT,
     validarCampos
 ], UsuarioController.listarUsuariosInactivos);
 
 router.get("/listar/rol/:rol",[
-    // validarJWT,
+    validarJWT,
     check('rol', 'El rol no es válido').isNumeric(),
     validarCampos
 ], UsuarioController.listarUsuariosPorRol);
 
 router.post("/", [
-    // // validarJWT,
+    validarJWT,
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('sede', 'La sede es obligatoria').not().isEmpty(),
     check('sede', 'La sede no es válida').isMongoId(),
@@ -53,7 +53,7 @@ router.post("/", [
 ], UsuarioController.crearUsuario);
 
 router.put("/:id", [
-    // validarJWT,
+    validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(usuarioHelper.validarId),
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
@@ -72,14 +72,14 @@ router.put("/:id", [
 ], UsuarioController.modificarUsuario);
 
 router.put("/activar/:id", [
-    // // validarJWT,
+    // validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(usuarioHelper.validarId),
     validarCampos
 ], UsuarioController.activarUsuario);
 
 router.put("/inactivar/:id", [
-    // // validarJWT,
+    // validarJWT,
     check('id', 'No es un ID válido').isMongoId(),
     check('id').custom(usuarioHelper.validarId),
     validarCampos
